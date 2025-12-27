@@ -1,0 +1,15 @@
+{
+  "name": "oilpriceapi",
+  "version": "1.0.0",
+  "description": "Real-time oil, gas, and commodity prices from OilPriceAPI",
+  "mcpServers": {
+    "oilpriceapi": {
+      "command": "npx",
+      "args": ["oilpriceapi-mcp"],
+      "env": {
+        "OILPRICEAPI_KEY": "${OILPRICEAPI_KEY}"
+      }
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
