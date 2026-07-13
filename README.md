@@ -42,10 +42,10 @@ Once installed, you can ask Gemini about commodity prices:
 
 | Tool | Description |
 |------|-------------|
-| `get_commodity_price` | Get current price for a commodity |
-| `get_market_overview` | Get all prices, optionally filtered by category |
-| `compare_prices` | Compare 2-5 commodities |
-| `list_commodities` | List all available commodities |
+| `opa_get_price` | Get current price for a commodity |
+| `opa_market_overview` | Get all prices, optionally filtered by category |
+| `opa_compare_prices` | Compare 2-5 commodities |
+| `opa_list_commodities` | List all available commodities |
 
 ## Supported Commodities
 
