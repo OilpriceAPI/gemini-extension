@@ -1,0 +1,20 @@
+{
+  "name": "oilpriceapi-gemini-extension",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "test": "node --test --test-reporter=spec tests/*.test.mjs",
+    "test:manifest": "gemini extensions validate .",
+    "test:install": "node scripts/clean-install-smoke.mjs",
+    "test:extension": "npm run test:manifest && npm run test:install"
+  },
+  "devDependencies": {
+    "@google/gemini-cli": "0.49.0",
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "oilpriceapi-mcp": "3.0.0"
+  }
+}

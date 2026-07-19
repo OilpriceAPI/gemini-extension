@@ -1,14 +1,33 @@
 {
   "name": "oilpriceapi",
-  "version": "1.0.0",
-  "description": "Real-time oil, gas, and commodity prices from OilPriceAPI",
+  "version": "2.0.0",
+  "description": "Source-timestamped oil, gas, refined-product, futures, and related energy data for Gemini CLI.",
+  "settings": [
+    {
+      "name": "OilPriceAPI API Key",
+      "description": "Optional. Add a key for account-enabled datasets, or leave blank for product facts and the bounded keyless demo.",
+      "envVar": "OILPRICEAPI_KEY",
+      "sensitive": true
+    }
+  ],
   "mcpServers": {
     "oilpriceapi": {
+      "description": "Read-only OilPriceAPI tools. Values include source timestamps; dataset access and freshness vary by source, market hours, plan, and account entitlement.",
       "command": "npx",
-      "args": ["oilpriceapi-mcp"],
+      "args": [
+        "-y",
+        "oilpriceapi-mcp@3.0.0",
+        "--scope",
+        "read",
+        "--profile",
+        "all"
+      ],
       "env": {
-        "OILPRICEAPI_KEY": "${OILPRICEAPI_KEY}"
-      }
+        "OILPRICEAPI_KEY": "${OILPRICEAPI_KEY:-}",
+        "OILPRICEAPI_CLIENT_MARKER": "oilpriceapi-gemini/2.0.0",
+        "OILPRICEAPI_CLIENT_VERSION": "2.0.0"
+      },
+      "timeout": 15000
     }
   },
   "contextFileName": "GEMINI.md"
