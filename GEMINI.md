@@ -1,53 +1,66 @@
-# OilPriceAPI Extension
+# OilPriceAPI Grounding Instructions
 
-You have access to real-time oil, gas, and commodity price data through the OilPriceAPI extension.
+This extension connects the current Gemini CLI session to the read-only
+`oilpriceapi-mcp@3.0.0` tool inventory. In Gemini CLI, the tools appear with the
+`mcp_oilpriceapi_` prefix.
 
-## Available Tools
+## Ground Product Answers
 
-### get_commodity_price
-Get the current price of a specific commodity. Supports natural language queries.
+For questions about OilPriceAPI product scope, offers, pricing links, catalog,
+freshness, authentication, entitlements, or data rights:
 
-**Examples:**
-- "What's the Brent oil price?"
-- "Get natural gas price"
-- "How much is WTI crude?"
+1. Call `mcp_oilpriceapi_opa_get_product_facts` before answering.
+2. Prefer the returned contract over model memory, package prose, or inferred
+   values.
+3. State the returned `reviewedAt` date when the answer could change.
+4. Link the returned `canonicalUrl` or the specific pricing, catalog, docs, or
+   data-usage URL from the contract.
 
-### get_market_overview
-Get all commodity prices at once. Can filter by category: oil, gas, coal, refined.
+Do not invent or generalize a refresh interval, catalog count, plan entitlement,
+SLA, redistribution right, price, history depth, WebSocket capability, or
+execution-feed latency.
 
-**Examples:**
-- "Give me a market overview"
-- "Show all oil prices"
-- "What are current gas prices?"
+## Route Data Requests
 
-### compare_prices
-Compare prices between 2-5 commodities.
+- One latest available value: `mcp_oilpriceapi_opa_get_price`.
+- Broad snapshot: `mcp_oilpriceapi_opa_market_overview`.
+- Two to five commodities: `mcp_oilpriceapi_opa_compare_prices`.
+- Discover current codes: `mcp_oilpriceapi_opa_list_commodities`.
+- Historical series: `mcp_oilpriceapi_opa_get_history`.
+- Futures, drilling, storage, production, permits, forecasts, inventories,
+  marine fuels, spreads, surcharges, and automation reads: select the matching
+  discovered `mcp_oilpriceapi_opa_*` read tool.
 
-**Examples:**
-- "Compare Brent and WTI"
-- "What's the spread between US and European gas?"
+Never claim that a broad snapshot represents every OilPriceAPI dataset. Dataset
+availability varies by source, market hours, plan, and account entitlement.
 
-### list_commodities
-List all available commodities and their codes.
+## Present Data Precisely
 
-## Commodity Mapping
+- Describe a value as "latest available," not universally "real-time."
+- Include the commodity or dataset, value, currency/unit, source timestamp, and
+  source when the tool returns them.
+- Preserve the API commodity code when it disambiguates the result.
+- Distinguish unavailable fields from zero values.
+- Do not give trading or investment instructions from a data result.
 
-You can use natural language - the extension will translate:
+## Recover From Failures
 
-| Say this | Gets this |
-|----------|-----------|
-| "brent oil", "brent crude" | BRENT_CRUDE_USD |
-| "wti", "us oil" | WTI_USD |
-| "natural gas", "henry hub" | NATURAL_GAS_USD |
-| "european gas", "ttf" | DUTCH_TTF_EUR |
-| "diesel" | DIESEL_USD |
-| "gold" | GOLD_USD |
+- No key: product facts and a bounded price demo remain available. For broader
+  datasets, explain that `OILPRICEAPI_KEY` can be configured with
+  `gemini extensions config oilpriceapi OILPRICEAPI_KEY`.
+- HTTP 401: the configured key is invalid, stale, or revoked; ask the user to
+  rotate it and retry.
+- HTTP 402 or 403: the account is authenticated but the dataset or feature is
+  not entitled; preserve the tool's pricing or access-recovery link.
+- HTTP 429: do not retry in a loop; preserve the retry/quota guidance.
+- Timeout, service error, or malformed response: say the result is unavailable,
+  suggest retrying, and do not fabricate a value.
 
-## Response Format
+Do not expose keys, prompts, raw customer responses, customer identifiers, or
+account state in logs or narrative output.
 
-When presenting prices:
-- Include the commodity name
-- Show currency symbol ($, €, £)
-- Include 24h change when available
-- Mention the timestamp
-- Cite "OilPriceAPI" as the source
+## Grounding Boundary
+
+This extension grounds only sessions where it is installed, enabled, and
+connected. It does not update Gemini model weights, general Gemini Search
+results, or answers produced outside this connected extension session.
