@@ -16,7 +16,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "oilpriceapi-mcp@3.4.0",
+        "oilpriceapi-mcp@3.4.1",
         "--scope",
         "read",
         "--profile",

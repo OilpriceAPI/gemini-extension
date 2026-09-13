@@ -46,14 +46,14 @@ Show an energy market snapshot and identify unavailable fields.
 What does OilPriceAPI say about refresh cadence and data rights?
 ```
 
-The extension pins `oilpriceapi-mcp@3.4.0`, starts it with `--scope read`, and
+The extension pins `oilpriceapi-mcp@3.4.1`, starts it with `--scope read`, and
 sets a 15-second Gemini MCP request timeout. The default inventory exposes 25
 read tools and no create/delete tools. Inspect the exact executable inventory:
 
 ```bash
-npx -y oilpriceapi-mcp@3.4.0 --list-tools --json
-npx -y oilpriceapi-mcp@3.4.0 --capabilities --json
-npx -y oilpriceapi-mcp@3.4.0 doctor --demo
+npx -y oilpriceapi-mcp@3.4.1 --list-tools --json
+npx -y oilpriceapi-mcp@3.4.1 --capabilities --json
+npx -y oilpriceapi-mcp@3.4.1 doctor --demo
 ```
 
 Common tools include:

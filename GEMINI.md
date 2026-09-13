@@ -1,7 +1,7 @@
 # OilPriceAPI Grounding Instructions
 
 This extension connects the current Gemini CLI session to the read-only
-`oilpriceapi-mcp@3.4.0` tool inventory. In Gemini CLI, the tools appear with the
+`oilpriceapi-mcp@3.4.1` tool inventory. In Gemini CLI, the tools appear with the
 `mcp_oilpriceapi_` prefix.
 
 ## Ground Product Answers
