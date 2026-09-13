@@ -171,7 +171,18 @@ async function withClient(apiKey, callback) {
 test("Gemini manifest launches the exact read-only tool inventory", async () => {
   await withClient("", async (client) => {
     const listed = await client.listTools();
-    assert.equal(listed.tools.length, 25);
+    // 25 -> 32 on the oilpriceapi-mcp 3.0.0 -> 3.3.0 pin bump.
+    //
+    // The count is a change-detector, not the safety property: it exists so a
+    // new tool cannot appear in the Gemini surface without someone looking at
+    // it. All 32 were reviewed on 2026-09-13 and every one is a read verb
+    // (get / list / compare / search / lookup / market_overview). The two
+    // assertions below are the actual guards and both still hold: every tool
+    // carries readOnlyHint, and no write tool is exposed.
+    //
+    // If this number changes again, list the tools and check them before
+    // editing it.
+    assert.equal(listed.tools.length, 32);
     assert.ok(listed.tools.some((tool) => tool.name === "opa_get_product_facts"));
     assert.ok(listed.tools.some((tool) => tool.name === "opa_get_price"));
     assert.ok(
