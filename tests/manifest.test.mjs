@@ -23,7 +23,7 @@ test("manifest pins a bounded read-only MCP runtime", () => {
   assert.equal(server.command, "npx");
   assert.deepEqual(server.args, [
     "-y",
-    "oilpriceapi-mcp@3.3.0",
+    "oilpriceapi-mcp@3.4.0",
     "--scope",
     "read",
     "--profile",
