@@ -1,6 +1,6 @@
 {
   "name": "oilpriceapi-gemini-extension",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -15,6 +15,6 @@
   "devDependencies": {
     "@google/gemini-cli": "0.49.0",
     "@modelcontextprotocol/sdk": "1.29.0",
-    "oilpriceapi-mcp": "3.4.1"
+    "oilpriceapi-mcp": "3.4.2"
   }
 }

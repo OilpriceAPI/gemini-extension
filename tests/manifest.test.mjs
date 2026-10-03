@@ -16,14 +16,14 @@ const readme = await readFile(
 
 test("manifest pins a bounded read-only MCP runtime", () => {
   assert.equal(manifest.name, "oilpriceapi");
-  assert.equal(manifest.version, "2.0.0");
+  assert.equal(manifest.version, "2.1.0");
   assert.equal(manifest.contextFileName, "GEMINI.md");
 
   const server = manifest.mcpServers.oilpriceapi;
   assert.equal(server.command, "npx");
   assert.deepEqual(server.args, [
     "-y",
-    "oilpriceapi-mcp@3.4.1",
+    "oilpriceapi-mcp@3.4.2",
     "--scope",
     "read",
     "--profile",
