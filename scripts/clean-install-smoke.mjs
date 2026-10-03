@@ -43,8 +43,8 @@ try {
       "utf8",
     ),
   );
-  if (installedManifest.version !== "2.0.0") {
-    throw new Error("Clean install did not load Gemini extension 2.0.0.");
+  if (installedManifest.version !== "2.1.0") {
+    throw new Error("Clean install did not load Gemini extension 2.1.0.");
   }
   const { stdout, stderr } = await execFileAsync(
     "gemini",
@@ -52,7 +52,7 @@ try {
     { cwd: root, env, encoding: "utf8", timeout: 30_000 },
   );
   const listing = `${stdout}\n${stderr}`;
-  if (!listing.includes("oilpriceapi") || !listing.includes("2.0.0")) {
+  if (!listing.includes("oilpriceapi") || !listing.includes("2.1.0")) {
     throw new Error("Clean install is absent from Gemini extension listing.");
   }
   process.stdout.write("clean Gemini extension install smoke passed\n");

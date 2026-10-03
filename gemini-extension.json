@@ -1,6 +1,6 @@
 {
   "name": "oilpriceapi",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Source-timestamped oil, gas, refined-product, futures, and related energy data for Gemini CLI.",
   "settings": [
     {
@@ -16,7 +16,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "oilpriceapi-mcp@3.4.1",
+        "oilpriceapi-mcp@3.4.2",
         "--scope",
         "read",
         "--profile",
@@ -24,8 +24,8 @@
       ],
       "env": {
         "OILPRICEAPI_KEY": "${OILPRICEAPI_KEY:-}",
-        "OILPRICEAPI_CLIENT_MARKER": "oilpriceapi-gemini/2.0.0",
-        "OILPRICEAPI_CLIENT_VERSION": "2.0.0"
+        "OILPRICEAPI_CLIENT_MARKER": "oilpriceapi-gemini/2.1.0",
+        "OILPRICEAPI_CLIENT_VERSION": "2.1.0"
       },
       "timeout": 15000
     }
